@@ -1,0 +1,31 @@
+@use "./variables.scss";
+@use "./media-query.scss";
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 100%;
+}
+
+body {
+  font-size: 1rem;
+  font-family: "Commissioner", sans-serif;
+  font-weight: 400;
+  color: variables.$clr-neutral-gray;
+}
+
+.header {
+  background-image: url("../images/image-hero-mobile.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  min-height: clamp(18.75rem, 16rem + 10vw, 25rem);
+  @include media-query.xmd {
+    background-image: url("../images/image-hero-desktop.jpg");
+  }
+}

@@ -1,0 +1,131 @@
+@use "../../assets/styles/variables.scss";
+@use "../../assets/styles/media-query.scss";
+
+.nav {
+  @include media-query.md {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: clamp(2rem, 1rem + 3vw, 3rem) 0;
+  }
+}
+
+.logo {
+  img {
+    height: 1.125rem;
+  }
+}
+
+.main {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2rem 0;
+  @include media-query.md {
+    padding: 0;
+  }
+}
+
+.hamburger {
+  width: 1rem;
+  background-color: transparent;
+  border: none;
+  @include media-query.md {
+    display: none;
+  }
+
+  > div,
+  &::after,
+  &::before {
+    height: 3px;
+    background-color: white;
+    margin: 3px 0;
+    transition: 200ms ease-out transform, 100ms ease-out opacity;
+  }
+
+  &::before,
+  &::after {
+    content: "";
+    display: block;
+  }
+
+  &.active {
+    > div {
+      opacity: 0;
+    }
+
+    &::before {
+      transform: rotate(-45deg) translate(-4px, 4px);
+    }
+    &::after {
+      transform: rotate(45deg) translate(-4px, -5px);
+    }
+  }
+}
+.navLinks {
+  background-color: white;
+  font-weight: 500;
+  font-size: 1.125rem;
+  text-transform: capitalize;
+  color: variables.$clr-neutral-black;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  display: none;
+  max-height: 0;
+  transition: max-height 300ms ease;
+
+  @include media-query.md {
+    max-height: unset;
+    overflow: unset;
+    display: flex;
+    background-color: unset;
+    font-size: 0.875rem;
+    color: white;
+    overflow: none;
+
+    > * + * {
+      padding-left: 2rem;
+    }
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    height: 100%;
+    padding: 1.5rem;
+    transition: background-color 200ms ease-out;
+    cursor: pointer;
+
+    @include media-query.md {
+      padding: 0;
+      height: unset;
+      transition: opacity 200ms ease-out;
+    }
+
+    &:focus,
+    &:hover {
+      background-color: rgba($color: variables.$clr-neutral-gray, $alpha: 0.05);
+      border: none;
+      outline: none;
+
+      @include media-query.md {
+        background-color: unset;
+        opacity: 0.65;
+      }
+    }
+  }
+
+  > li {
+    list-style: none;
+  }
+
+  > * + * {
+    border-top: 1px solid
+      rgba($color: variables.$clr-neutral-gray, $alpha: 0.25);
+
+    @include media-query.md {
+      border-top: unset;
+    }
+  }
+}

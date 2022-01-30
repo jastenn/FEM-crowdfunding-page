@@ -1,0 +1,21 @@
+@use "../../assets/styles/media-query.scss";
+$height: 15rem;
+.nav-ease-enter-done {
+  max-height: $height !important;
+  display: block !important;
+  @include media-query.md {
+    display: flex !important;
+  }
+}
+
+.nav-ease-enter {
+  display: block !important;
+}
+.nav-ease-enter-active {
+  max-height: $height !important;
+  transition: max-height 300ms ease;
+}
+
+.nav-ease-exit {
+  display: block !important;
+}
