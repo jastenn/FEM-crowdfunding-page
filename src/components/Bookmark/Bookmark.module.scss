@@ -1,0 +1,59 @@
+@use "../../assets/styles/variables";
+@use "../../assets/styles/media-query";
+
+.checkbox {
+  position: absolute;
+  opacity: 0;
+}
+
+.bookmark {
+  overflow: hidden;
+  display: inline-block;
+  width: min-content;
+  border-radius: 10em;
+  border: none;
+  font-family: inherit;
+  background-color: #f5f5f5;
+  font-weight: 700;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: variables.$clr-neutral-gray;
+  user-select: none;
+  transition: 200ms ease-out opacity, 200ms ease-out color;
+
+  svg {
+    :global(.symbol),
+    :global(.bg) {
+      transition: 200ms ease-out fill;
+    }
+  }
+
+  &:global(.marked) {
+    color: variables.$clr-primary-dark-cyan;
+    &:hover {
+      opacity: 1;
+    }
+
+    svg {
+      :global(.symbol) {
+        fill: white;
+      }
+      :global(.bg) {
+        fill: variables.$clr-primary-dark-cyan;
+      }
+    }
+  }
+  &:hover {
+    opacity: 0.75;
+  }
+
+  .label {
+    padding: 0 1rem;
+    display: none;
+    @include media-query.md {
+      display: unset;
+    }
+  }
+}

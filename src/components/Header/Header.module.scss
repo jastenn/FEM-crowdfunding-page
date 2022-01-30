@@ -1,0 +1,44 @@
+@use "../../assets/styles/variables.scss";
+@use "../../assets/styles/media-query.scss";
+.header {
+  margin-top: -3.5rem;
+  text-align: center;
+  .logo {
+    margin-top: -10rem;
+    transform: translateY(-50%);
+    @include media-query.md {
+      transform: translateY(-70%);
+    }
+  }
+
+  .title {
+    font-size: clamp(1.25rem, 0.75rem + 2vw, 1.75rem);
+    font-weight: 700;
+    color: variables.$clr-neutral-black;
+    line-height: 1.25;
+    margin-top: -0.875rem;
+    // margin-bottom: 1em;
+    margin-bottom: 0.75rem;
+  }
+
+  .description {
+    margin-bottom: 1.79em;
+    @include media-query.md {
+      margin-bottom: 2.5rem;
+    }
+  }
+}
+.cta {
+  display: flex;
+  justify-content: space-between;
+
+  > :global(.__button) {
+    flex-grow: 2;
+    max-width: 13.25rem;
+  }
+
+  > :global(.__bookmark) {
+    flex-grow: 0;
+    margin-left: 0.75rem;
+  }
+}

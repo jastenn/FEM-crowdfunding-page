@@ -13,9 +13,25 @@ $height: 15rem;
 }
 .nav-ease-enter-active {
   max-height: $height !important;
-  transition: max-height 300ms ease;
 }
 
 .nav-ease-exit {
   display: block !important;
+}
+
+.backdrop-fade-enter-done {
+  opacity: 1;
+  display: block;
+}
+
+.backdrop-fade-enter {
+  display: block;
+}
+.backdrop-fade-enter-active {
+  opacity: 1;
+  // transition: max-height 300ms ease;
+}
+
+.backdrop-fade-exit {
+  display: block;
 }
