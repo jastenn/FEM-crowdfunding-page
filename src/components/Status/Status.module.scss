@@ -1,0 +1,87 @@
+@use "../../assets/styles/variables.scss";
+@use "../../assets/styles/media-query.scss";
+
+.status {
+  .main {
+    text-align: center;
+    margin-bottom: 1.63rem;
+    @include media-query.md {
+      margin-bottom: 2.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      text-align: left;
+    }
+
+    > * {
+      padding: 0.75rem 0 1.5rem;
+      @include media-query.md {
+        padding: 0;
+        width: 33.33%;
+      }
+    }
+
+    > :first-child {
+      padding-top: 0;
+    }
+
+    > :last-child {
+      padding-bottom: 0;
+    }
+
+    > * + * {
+      position: relative;
+      @include media-query.md {
+        padding-left: 2.88rem;
+      }
+
+      &::before {
+        content: "";
+        display: block;
+        width: 20%;
+        height: 1px;
+        opacity: 0.5;
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: variables.$clr-neutral-gray;
+
+        @include media-query.md {
+          width: 1px;
+          height: 70%;
+          left: 0;
+          top: 50%;
+          transform: translateY(-50%);
+        }
+      }
+    }
+  }
+}
+.value {
+  font-size: 2rem;
+  color: variables.$clr-neutral-black;
+}
+
+.progressBar {
+  height: 0.75rem;
+  width: 100%;
+  border-radius: 5em;
+  overflow: hidden;
+  position: relative;
+
+  .track,
+  .progress {
+    height: 100%;
+    width: 100%;
+  }
+  .track {
+    background-color: rgba($color: variables.$clr-neutral-gray, $alpha: 0.15);
+  }
+  .progress {
+    position: absolute;
+    border-radius: 5em;
+    left: 0;
+    background-color: variables.$clr-primary-cyan;
+  }
+}

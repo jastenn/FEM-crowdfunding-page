@@ -13,6 +13,7 @@ html {
 }
 
 body {
+  box-sizing: border-box;
   font-size: 0.875rem;
   font-family: "Commissioner", sans-serif;
   font-weight: 400;
@@ -35,13 +36,16 @@ body {
   }
 }
 
-.App.disable-scroll {
-  height: 100vh;
-  overflow-y: hidden;
-  @include media-query.xmd {
-    height: unset;
-    overflow-y: visible;
-  }
+.max-width-1100 {
+  max-width: 69.19rem;
+  width: 87%;
+  margin: 0 auto;
+}
+
+.max-width-700 {
+  max-width: 45.5rem;
+  width: 87%;
+  margin: 0 auto;
 }
 
 .card {
@@ -52,5 +56,20 @@ body {
   box-shadow: 0 0 4px rgba($color: #000000, $alpha: 0.15);
   @include media-query.md {
     padding: 3rem 2.94rem; // Desktop
+  }
+}
+
+.main {
+  > * + * {
+    margin-top: 1.5rem;
+  }
+}
+
+.App.disable-scroll {
+  height: 100vh;
+  overflow-y: hidden;
+  @include media-query.md {
+    height: unset;
+    overflow-y: scroll;
   }
 }
