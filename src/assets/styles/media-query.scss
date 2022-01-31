@@ -1,11 +1,11 @@
 @mixin md {
-  @media (min-width: 40.9375em) {
+  @media (min-width: 36.25em) {
     @content;
   }
 }
 
 @mixin xmd {
-  @media (min-width: 50em) {
+  @media (min-width: 43em) {
     @content;
   }
 }

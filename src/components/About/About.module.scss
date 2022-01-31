@@ -1,0 +1,69 @@
+@use "../../assets/styles/variables.scss";
+@use "../../assets/styles/media-query.scss";
+
+:global(.card) > .heading {
+  font-size: 1.125rem;
+  color: variables.$clr-neutral-black;
+  margin-bottom: 1.5rem;
+}
+
+.content {
+  margin-bottom: 2rem;
+  > * + * {
+    margin-top: 1.5rem;
+  }
+}
+
+.rewardsList {
+  > * {
+  }
+  > * + * {
+    margin-top: 1.5rem;
+  }
+}
+
+.reward {
+  :global(.heading) {
+    @include media-query.md {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+    }
+
+    :global(.label) {
+      font-size: clamp(0.875rem, 3vw, 1.125rem);
+      color: variables.$clr-neutral-black;
+      //   @include media-query.md {
+      //     font-size: 1.125rem;
+      //   }
+    }
+  }
+
+  .description,
+  .stock {
+    margin-bottom: 1.065rem;
+  }
+
+  .stock {
+    display: flex;
+    align-items: center;
+    color: variables.$clr-neutral-gray;
+    @include media-query.md {
+      margin-bottom: 0;
+    }
+    > strong {
+      font-size: 2rem;
+      color: variables.$clr-neutral-black;
+      font-weight: 700;
+      margin-right: 0.5rem;
+    }
+  }
+
+  .ctaContainer {
+    @include media-query.md {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+}

@@ -14,6 +14,7 @@
   );
   opacity: 0;
   transition: opacity 300ms ease-out;
+  display: none;
   @include media-query.md {
     display: none !important;
   }
@@ -23,7 +24,7 @@
   z-index: 2;
   @include media-query.md {
     display: flex;
-    align-items: center;
+    align-items: baseline;
     justify-content: space-between;
     padding: clamp(2rem, 1rem + 3vw, 3rem) 0;
   }

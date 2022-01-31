@@ -27,7 +27,10 @@ const Navigation: FC<NavigationProps> = ({
   return (
     <>
       <CSSTransition in={isActive} timeout={300} classNames="backdrop-fade">
-        <div className={styles.backdrop}></div>
+        <div
+          className={styles.backdrop}
+          onClick={() => setIsActive(false)}
+        ></div>
       </CSSTransition>
       <nav
         className={`${className ?? ""} ${isActive && styles.active} ${
@@ -41,9 +44,9 @@ const Navigation: FC<NavigationProps> = ({
           <button
             onClick={() => setIsActive(!isActive)}
             className={`${styles.hamburger} `}
-            name="hamburger"
+            aria-label="menu"
           >
-            <div></div>
+            <div />
           </button>
         </div>
 

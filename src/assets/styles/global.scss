@@ -59,6 +59,33 @@ body {
   }
 }
 
+.card-item {
+  padding: 1.1985rem 1.5rem;
+  border-radius: 0.6rem;
+  border: 1px solid rgba($color: variables.$clr-neutral-gray, $alpha: 0.25);
+  @include media-query.md {
+    padding: 2rem;
+  }
+
+  .heading {
+    margin-bottom: 1.3125rem;
+    @include media-query.md {
+      display: flex;
+      align-items: baseline;
+    }
+
+    .label {
+      font-size: 0.875rem;
+      color: variables.$clr-neutral-black;
+    }
+
+    .condition {
+      font-weight: 500;
+      color: variables.$clr-primary-cyan;
+    }
+  }
+}
+
 .main {
   > * + * {
     margin-top: 1.5rem;
@@ -70,6 +97,6 @@ body {
   overflow-y: hidden;
   @include media-query.md {
     height: unset;
-    overflow-y: scroll;
+    overflow-y: unset;
   }
 }
