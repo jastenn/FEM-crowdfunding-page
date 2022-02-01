@@ -8,6 +8,7 @@ import Status from "./components/Status/Status"
 import About from "./components/About/About"
 
 import MasterCraftLogo from "./assets/images/logo-mastercraft.svg"
+import SelectionModal from "./components/SelectionModal/SelectionModal"
 
 const rewards: Reward[] = [
   {
@@ -35,6 +36,7 @@ const rewards: Reward[] = [
 
 function App() {
   const [isScrollDisable, setIsScrollDisable] = useState(false)
+  const [isModalActive, setIsModalActive] = useState(false)
 
   return (
     <div className={`App ${isScrollDisable && "disable-scroll"}`}>
@@ -48,12 +50,21 @@ function App() {
         />
       </div>
 
+      {isModalActive && (
+        <SelectionModal
+          isActive={isModalActive}
+          onClose={() => setIsModalActive(false)}
+          options={rewards}
+          title="Mastercraft Bamboo Monitor Riser"
+        />
+      )}
       <main className="main max-width-700">
         <Header
           logo={MasterCraftLogo}
           companyName="Mastercraft"
           title="Mastercraft Bamboo Monitor Riser"
           description="A beautiful & handcrafted monitor stand to reduce neck and eye strain."
+          onCtaClicked={() => setIsModalActive(true)}
         />
         <Status
           currentFunding={89914}

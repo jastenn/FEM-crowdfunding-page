@@ -1,0 +1,46 @@
+@use "../../assets/styles/variables.scss";
+
+.input {
+  font-size: 0.75;
+  position: relative;
+  width: 6.25rem;
+}
+.sign {
+  font-size: inherit;
+  font-weight: 700;
+  position: absolute;
+  color: rgba($color: variables.$clr-neutral-gray, $alpha: 0.5);
+  top: 50%;
+  left: 1.5rem;
+  transform: translateY(-50%);
+}
+
+:global(.input-text) {
+  font-size: inherit;
+  font-family: inherit;
+  font-weight: 700;
+  color: variables.$clr-neutral-black;
+  padding: 1rem 1.5rem 1rem 2.25rem;
+  width: 100%;
+  border-radius: 5em;
+  border: none;
+  box-shadow: 0 0 0 1px inset
+    rgba($color: variables.$clr-neutral-gray, $alpha: 0.5);
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 1px inset
+      rgba($color: variables.$clr-neutral-gray, $alpha: 1);
+  }
+
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+  }
+
+  &[type="number"] {
+    -moz-appearance: textfield; /* Firefox */
+  }
+}

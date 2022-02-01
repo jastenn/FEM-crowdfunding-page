@@ -14,27 +14,36 @@ const About: FC<AboutProps> = ({ about, rewards }) => {
     <div className={`card`}>
       <h3 className={styles.heading}>About this project</h3>
       <p className={styles.content}>
-        {about.map((paragraph) => paragraph && <div>{paragraph}</div>)}
+        {about.map(
+          (paragraph, idx) =>
+            paragraph && (
+              <span key={idx} className={styles.paragraph}>
+                {paragraph}
+              </span>
+            )
+        )}
       </p>
-      <div className={styles.rewardsList}>
+      <ul className={styles.rewardsList}>
         {rewards.map((reward) => (
-          <div className={`${styles.reward} card-item`}>
+          <li key={reward.name} className={`${styles.reward} card-item`}>
             <div className="heading">
-              <h4 className="label">{reward.name}</h4>
+              <p className="label">{reward.name}</p>
               <p className="condition">
                 Pledge ${en.format(reward.minPledge)} or more
               </p>
             </div>
+
             <p className={styles.description}>{reward.description}</p>
+
             <div className={styles.ctaContainer}>
               <p className={styles.stock}>
                 <strong>{reward.stock}</strong>left
               </p>
               <Button>Select Reward</Button>
             </div>
-          </div>
+          </li>
         ))}
-      </div>
+      </ul>
     </div>
   )
 }

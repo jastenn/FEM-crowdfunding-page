@@ -1,0 +1,153 @@
+@use "../../assets/styles/variables.scss";
+@use "../../assets/styles/media-query.scss";
+
+.options {
+  border: none;
+  caption {
+    visibility: hidden;
+    position: absolute;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  :global(.heading) {
+    padding-left: 2.375rem;
+    position: relative;
+  }
+
+  > :global(.card-item):not(:first-of-type) {
+    margin-top: 1.63rem;
+  }
+}
+
+.option {
+  overflow: hidden;
+  position: relative;
+  :global(.heading) {
+    display: block;
+    @include media-query.xmd {
+      display: flex;
+      :global(.condition) {
+        margin-left: 0.5rem;
+      }
+    }
+  }
+  .stock {
+    margin-top: 1.625rem;
+    margin-bottom: 1rem;
+    @include media-query.xmd {
+      position: absolute;
+      margin: 0;
+      top: 1.875rem;
+      right: 1.875rem;
+    }
+
+    strong {
+      font-size: 1.125rem;
+      font-weight: 700;
+      color: variables.$clr-neutral-black;
+    }
+  }
+}
+
+.radioContainer {
+  position: absolute;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 5em;
+  // border: 1px solid variables.$clr-neutral-gray;
+  box-shadow: 0 0 0 1px inset variables.$clr-neutral-gray;
+
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+input[name="reward"] {
+  position: absolute;
+  pointer-events: none;
+  opacity: 0;
+  height: 0;
+  width: 0;
+
+  &:disabled + .option {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  &:checked + .option {
+    box-shadow: 0 0 0 2px inset variables.$clr-primary-cyan;
+
+    // .description {
+    //   margin-bottom: 2rem;
+    // }
+
+    .radioContainer {
+      .checkmark {
+        background-color: variables.$clr-primary-cyan;
+        height: 50%;
+        width: 50%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border-radius: 10em;
+      }
+    }
+
+    .pledgeInput {
+      margin-top: 1.625rem;
+    }
+  }
+}
+
+.pledgeInput {
+  padding-top: 2rem;
+  position: relative;
+  @include media-query.xmd {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &::before {
+    content: "";
+    display: block;
+    width: 140%;
+    height: 2px;
+    background-color: rgba($color: variables.$clr-neutral-gray, $alpha: 0.2);
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .label {
+    text-align: center;
+    margin-bottom: 1.125rem;
+    @include media-query.xmd {
+      align-self: center;
+      margin-bottom: 0;
+    }
+  }
+
+  .row2 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    @include media-query.xmd {
+      width: 13.81rem;
+      :global(.__button) {
+        height: 100%;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+
+    > * {
+      width: 48%;
+    }
+  }
+}

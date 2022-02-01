@@ -20,6 +20,7 @@ body {
   line-height: 1.7;
   color: variables.$clr-neutral-gray;
   background-color: #fafafa;
+  position: relative;
   @include media-query.md {
     font-size: 1rem;
   }
@@ -60,14 +61,16 @@ body {
 }
 
 .card-item {
+  list-style: none;
   padding: 1.1985rem 1.5rem;
   border-radius: 0.6rem;
-  border: 1px solid rgba($color: variables.$clr-neutral-gray, $alpha: 0.25);
+  box-shadow: 0 0 0 1px inset
+    rgba($color: variables.$clr-neutral-gray, $alpha: 0.25);
   @include media-query.md {
     padding: 2rem;
   }
 
-  .heading {
+  > .heading {
     margin-bottom: 1.3125rem;
     @include media-query.md {
       display: flex;
@@ -76,6 +79,7 @@ body {
 
     .label {
       font-size: 0.875rem;
+      font-weight: 700;
       color: variables.$clr-neutral-black;
     }
 
