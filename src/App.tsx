@@ -38,6 +38,15 @@ function App() {
   const [isScrollDisable, setIsScrollDisable] = useState(false)
   const [isModalActive, setIsModalActive] = useState(false)
 
+  const submitHandler = ({
+    selectedOption,
+    amount,
+  }: {
+    selectedOption: string
+    amount: number
+  }) => {
+    console.log(selectedOption, amount)
+  }
   return (
     <div className={`App ${isScrollDisable && "disable-scroll"}`}>
       <div className="header">
@@ -52,6 +61,7 @@ function App() {
 
       {isModalActive && (
         <SelectionModal
+          onSubmit={submitHandler}
           isActive={isModalActive}
           onClose={() => setIsModalActive(false)}
           options={rewards}

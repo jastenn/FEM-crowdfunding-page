@@ -1,9 +1,9 @@
 import React, {
   FC,
-  useState,
   Fragment,
-  FormEventHandler,
   MouseEventHandler,
+  useEffect,
+  useState,
 } from "react"
 import styles from "./SelectionModalOptions.module.scss"
 import type { Reward } from "../../types"
@@ -13,26 +13,39 @@ import Button from "../Button/Button"
 interface SelectionModalOptionsProps {
   selected?: string | undefined
   options: Reward[]
-  onChange?: (state: string) => void
+  onChangeSelection?: (state: string) => void
+  onSubmit: ({
+    selectedOption,
+    amount,
+  }: {
+    selectedOption: string
+    amount: number
+  }) => void
 }
 
 const SelectionModalOptions: FC<SelectionModalOptionsProps> = ({
   options,
-  selected,
-  onChange,
+  onSubmit,
 }) => {
-  const [selectedOption, setSelectedOption] = useState<string | undefined>(
-    selected
-  )
+  const [selectedOption, setSelectedOption] = useState<string>()
+  const [pledgeAmount, setPledgeAmount] = useState<string>("")
 
-  const onChangeHandler = () => {
-    if (onChange) onChange(selectedOption!!)
+  const pledgeInputHandler = (newValue: string) => {
+    setPledgeAmount(newValue)
   }
 
-  const submitHandler: MouseEventHandler<HTMLButtonElement> = (e) => {
+  const submitHandler = (selectedOption: string, e: any) => {
     e.preventDefault()
-    console.log(selectedOption)
+    onSubmit({ selectedOption, amount: parseInt(pledgeAmount) })
   }
+
+  // useEffect(
+  //   () => () => {
+  //     setPledgeAmount("")
+  //     setSelectedOption("")
+  //   },
+  //   []
+  // )
 
   return (
     <form>
@@ -44,7 +57,7 @@ const SelectionModalOptions: FC<SelectionModalOptionsProps> = ({
           aria-labelledby="no-reward"
           tabIndex={10}
           checked={"no reward" === selectedOption}
-          onChange={onChangeHandler}
+          readOnly
         />
         <li
           onClick={() => setSelectedOption("no reward")}
@@ -64,6 +77,7 @@ const SelectionModalOptions: FC<SelectionModalOptionsProps> = ({
             project. As a backer, you will be signed up to receive product
             updates via email.
           </p>
+
           {selectedOption === "no reward" && (
             <div className={styles.pledgeInput}>
               <p className={styles.label} id="pledge-input-label">
@@ -71,12 +85,19 @@ const SelectionModalOptions: FC<SelectionModalOptionsProps> = ({
               </p>
               <div className={styles.row2}>
                 <InputText
-                  onValueChange={() => {}}
+                  value={pledgeAmount}
+                  onValueChange={pledgeInputHandler}
                   min={1}
                   aria-labelledby="pledge-input-label"
                 />
 
-                <Button onClick={submitHandler}>Continue</Button>
+                <Button
+                  onClick={(e) => {
+                    submitHandler("no reward", e)
+                  }}
+                >
+                  Continue
+                </Button>
               </div>
             </div>
           )}
@@ -120,12 +141,19 @@ const SelectionModalOptions: FC<SelectionModalOptionsProps> = ({
                   </p>
                   <div className={styles.row2}>
                     <InputText
-                      onValueChange={() => {}}
+                      value={pledgeAmount}
+                      onValueChange={pledgeInputHandler}
                       min={reward.minPledge}
                       aria-labelledby="pledge-input-label"
                     />
 
-                    <Button onClick={submitHandler}>Continue</Button>
+                    <Button
+                      onClick={(e) => {
+                        submitHandler(reward.name, e)
+                      }}
+                    >
+                      Continue
+                    </Button>
                   </div>
                 </div>
               )}

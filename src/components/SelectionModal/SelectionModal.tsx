@@ -12,6 +12,13 @@ interface SelectionModal {
   selected?: string
   title: string
   options: Reward[]
+  onSubmit: ({
+    selectedOption,
+    amount,
+  }: {
+    selectedOption: string
+    amount: number
+  }) => void
 }
 
 const SelectionModal: FC<SelectionModal> = ({
@@ -19,6 +26,7 @@ const SelectionModal: FC<SelectionModal> = ({
   onClose,
   options,
   title,
+  onSubmit,
   selected,
 }) => {
   return (
@@ -43,7 +51,7 @@ const SelectionModal: FC<SelectionModal> = ({
           Want to support us in bringing {title} out in the world?
         </p>
 
-        <SelectionModalOptions options={options} />
+        <SelectionModalOptions onSubmit={onSubmit} options={options} />
       </div>
     </>
   )

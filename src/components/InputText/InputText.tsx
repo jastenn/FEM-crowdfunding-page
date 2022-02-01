@@ -1,40 +1,30 @@
-import React, {
-  InputHTMLAttributes,
-  FC,
-  useState,
-  FormEventHandler,
-  useEffect,
-} from "react"
+import React, { FC, FormEventHandler } from "react"
 import styles from "./InputText.module.scss"
 
 interface InputTextProps {
+  value: string
   type?: "number"
   min: number
   onValueChange: (value: string) => void
   className?: string
 }
 const InputText: FC<InputTextProps> = ({
+  value,
   onValueChange,
   min = 0,
   type = "number",
   className = "",
 }) => {
-  const [value, setValue] = useState<string>(`${min}`)
-
   const inputHandler: FormEventHandler<HTMLInputElement> = (e) => {
     const el = e.target as HTMLInputElement
-    setValue(el.value)
+    onValueChange(el.value)
   }
 
   const blurHandler: FormEventHandler<HTMLInputElement> = () => {
     if (value === "" || parseInt(value) < min) {
-      setValue(min.toString())
+      onValueChange(min.toString())
     }
   }
-
-  useEffect(() => {
-    onValueChange(value)
-  }, [value])
 
   return (
     <div className={`${className} ${styles.input}`}>
