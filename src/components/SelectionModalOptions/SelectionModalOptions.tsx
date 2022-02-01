@@ -18,7 +18,7 @@ interface SelectionModalOptionsProps {
     selectedOption,
     amount,
   }: {
-    selectedOption: string
+    selectedOption: Reward | string
     amount: number
   }) => void
 }
@@ -34,7 +34,7 @@ const SelectionModalOptions: FC<SelectionModalOptionsProps> = ({
     setPledgeAmount(newValue)
   }
 
-  const submitHandler = (selectedOption: string, e: any) => {
+  const submitHandler = (selectedOption: Reward | string, e: any) => {
     e.preventDefault()
     onSubmit({ selectedOption, amount: parseInt(pledgeAmount) })
   }
@@ -149,7 +149,7 @@ const SelectionModalOptions: FC<SelectionModalOptionsProps> = ({
 
                     <Button
                       onClick={(e) => {
-                        submitHandler(reward.name, e)
+                        submitHandler(reward, e)
                       }}
                     >
                       Continue

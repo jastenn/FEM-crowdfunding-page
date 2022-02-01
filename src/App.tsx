@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { Fragment, useEffect, useState } from "react"
 import { Reward } from "./types"
 import "./assets/styles/layout.scss"
 
@@ -9,6 +9,8 @@ import About from "./components/About/About"
 
 import MasterCraftLogo from "./assets/images/logo-mastercraft.svg"
 import SelectionModal from "./components/SelectionModal/SelectionModal"
+import { createPortal } from "react-dom"
+import ModalSuccess from "./components/ModalSuccess/ModalSuccess"
 
 const rewards: Reward[] = [
   {
@@ -36,17 +38,40 @@ const rewards: Reward[] = [
 
 function App() {
   const [isScrollDisable, setIsScrollDisable] = useState(false)
-  const [isModalActive, setIsModalActive] = useState(false)
+  const [isSelectionModalActive, setSelectionModalActive] = useState(false)
+  const [isSuccessModalVisible, setIsSuccessModalVisible] = useState(false)
 
   const submitHandler = ({
     selectedOption,
     amount,
   }: {
-    selectedOption: string
+    selectedOption: Reward | string
     amount: number
   }) => {
-    console.log(selectedOption, amount)
+    let finalAmount = amount
+    if (typeof selectedOption === "string") {
+      if (Number.isNaN(amount)) {
+        finalAmount = 1
+      }
+    } else {
+      if (Number.isNaN(amount)) {
+        finalAmount = selectedOption.minPledge
+      }
+    }
+
+    console.log(selectedOption, finalAmount)
+    showSuccessModal()
   }
+
+  const showSuccessModal = () => {
+    setIsSuccessModalVisible(true)
+    setSelectionModalActive(false)
+  }
+
+  const hideSuccessModal = () => {
+    setIsSuccessModalVisible(false)
+  }
+
   return (
     <div className={`App ${isScrollDisable && "disable-scroll"}`}>
       <div className="header">
@@ -59,14 +84,24 @@ function App() {
         />
       </div>
 
-      {isModalActive && (
-        <SelectionModal
-          onSubmit={submitHandler}
-          isActive={isModalActive}
-          onClose={() => setIsModalActive(false)}
-          options={rewards}
-          title="Mastercraft Bamboo Monitor Riser"
-        />
+      {(isSelectionModalActive || isSuccessModalVisible) && (
+        <>
+          <div className="backdrop"></div>
+          {isSelectionModalActive ? (
+            <SelectionModal
+              onSubmit={submitHandler}
+              isActive={isSelectionModalActive}
+              onClose={() => setSelectionModalActive(false)}
+              options={rewards}
+              campaignTitle="Mastercraft Bamboo Monitor Riser"
+            />
+          ) : (
+            <ModalSuccess
+              onClose={() => hideSuccessModal()}
+              campaignTitle="Mastercraft Bamboo Monitor Riser"
+            />
+          )}
+        </>
       )}
       <main className="main max-width-700">
         <Header
@@ -74,7 +109,7 @@ function App() {
           companyName="Mastercraft"
           title="Mastercraft Bamboo Monitor Riser"
           description="A beautiful & handcrafted monitor stand to reduce neck and eye strain."
-          onCtaClicked={() => setIsModalActive(true)}
+          onCtaClicked={() => setSelectionModalActive(true)}
         />
         <Status
           currentFunding={89914}

@@ -10,13 +10,13 @@ interface SelectionModal {
   isActive: boolean
   onClose: () => void
   selected?: string
-  title: string
+  campaignTitle: string
   options: Reward[]
   onSubmit: ({
     selectedOption,
     amount,
   }: {
-    selectedOption: string
+    selectedOption: Reward | string
     amount: number
   }) => void
 }
@@ -25,35 +25,31 @@ const SelectionModal: FC<SelectionModal> = ({
   isActive,
   onClose,
   options,
-  title,
+  campaignTitle,
   onSubmit,
   selected,
 }) => {
   return (
-    <>
-      <div className={styles.backdrop} />
-
-      <div className={`card max-width-700 ${styles.modal}`}>
-        <div className={styles.heading}>
-          <h3>Back this project</h3>
-          <button
-            tabIndex={10}
-            className={styles.closeBtn}
-            aria-label="close"
-            type="button"
-            onClick={() => onClose()}
-          >
-            <CloseModal />
-          </button>
-        </div>
-
-        <p className={styles.description}>
-          Want to support us in bringing {title} out in the world?
-        </p>
-
-        <SelectionModalOptions onSubmit={onSubmit} options={options} />
+    <div className={`card max-width-700 ${styles.modal}`}>
+      <div className={styles.heading}>
+        <h3>Back this project</h3>
+        <button
+          tabIndex={10}
+          className={styles.closeBtn}
+          aria-label="close"
+          type="button"
+          onClick={() => onClose()}
+        >
+          <CloseModal />
+        </button>
       </div>
-    </>
+
+      <p className={styles.description}>
+        Want to support us in bringing {campaignTitle} out in the world?
+      </p>
+
+      <SelectionModalOptions onSubmit={onSubmit} options={options} />
+    </div>
   )
 }
 
