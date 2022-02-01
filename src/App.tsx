@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from "react"
+import { useState } from "react"
 import { Reward } from "./types"
 import "./assets/styles/layout.scss"
 
@@ -9,7 +9,6 @@ import About from "./components/About/About"
 
 import MasterCraftLogo from "./assets/images/logo-mastercraft.svg"
 import SelectionModal from "./components/SelectionModal/SelectionModal"
-import { createPortal } from "react-dom"
 import ModalSuccess from "./components/ModalSuccess/ModalSuccess"
 
 const rewards: Reward[] = [

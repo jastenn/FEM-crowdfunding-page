@@ -1,5 +1,4 @@
 import React, { FC } from "react"
-import type { Reward } from "../../types"
 import styles from "./ModalSuccess.module.scss"
 
 import Button from "../Button/Button"

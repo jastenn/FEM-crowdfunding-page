@@ -1,12 +1,11 @@
 import { FC } from "react"
 import styles from "./SelectionModal.module.scss"
 import type { Reward } from "../../types"
-import { CSSTransition } from "react-transition-group"
 
 import { ReactComponent as CloseModal } from "../../assets/images/icon-close-modal.svg"
 import SelectionModalOptions from "../SelectionModalOptions/SelectionModalOptions"
 
-interface SelectionModal {
+interface SelectionModalProps {
   isActive: boolean
   onClose: () => void
   selected?: string
@@ -21,13 +20,11 @@ interface SelectionModal {
   }) => void
 }
 
-const SelectionModal: FC<SelectionModal> = ({
-  isActive,
+const SelectionModal: FC<SelectionModalProps> = ({
   onClose,
   options,
   campaignTitle,
   onSubmit,
-  selected,
 }) => {
   return (
     <div className={`card max-width-700 ${styles.modal}`}>
