@@ -7,9 +7,10 @@ import Button from "../Button/Button"
 interface AboutProps {
   about: string[]
   rewards: Reward[]
+  onSelect: (option: string) => void
 }
 
-const About: FC<AboutProps> = ({ about, rewards }) => {
+const About: FC<AboutProps> = ({ about, rewards, onSelect }) => {
   return (
     <div className={`card`}>
       <h3 className={styles.heading}>About this project</h3>
@@ -25,7 +26,12 @@ const About: FC<AboutProps> = ({ about, rewards }) => {
       </p>
       <ul className={styles.rewardsList}>
         {rewards.map((reward) => (
-          <li key={reward.name} className={`${styles.reward} card-item`}>
+          <li
+            key={reward.name}
+            className={`${styles.reward} ${
+              reward.stock <= 0 && "disabled"
+            } card-item`}
+          >
             <div className="heading">
               <p className="label">{reward.name}</p>
               <p className="condition">
@@ -39,7 +45,12 @@ const About: FC<AboutProps> = ({ about, rewards }) => {
               <p className={styles.stock}>
                 <strong>{reward.stock}</strong>left
               </p>
-              <Button>Select Reward</Button>
+              <Button
+                disabled={reward.stock <= 0}
+                onClick={() => onSelect(reward.name)}
+              >
+                {reward.stock > 0 ? "Select Reward" : "Out of Stock"}
+              </Button>
             </div>
           </li>
         ))}

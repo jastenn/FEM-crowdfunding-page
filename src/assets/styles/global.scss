@@ -35,6 +35,16 @@ body {
   @include media-query.xmd {
     background-image: url("../images/image-hero-desktop.jpg");
   }
+
+  // &::after {
+  //   content: "";
+  //   height: 100%;
+  //   background-image: linear-gradient(
+  //     180deg,
+  //     rgba(0, 0, 0, 0.47941183309261204) 0%,
+  //     rgba(0, 0, 0, 0) 37%
+  //   );
+  // }
 }
 
 .max-width-1100 {

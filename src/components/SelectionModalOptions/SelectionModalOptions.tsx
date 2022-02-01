@@ -24,10 +24,11 @@ interface SelectionModalOptionsProps {
 }
 
 const SelectionModalOptions: FC<SelectionModalOptionsProps> = ({
+  selected,
   options,
   onSubmit,
 }) => {
-  const [selectedOption, setSelectedOption] = useState<string>()
+  const [selectedOption, setSelectedOption] = useState<string>(selected || "")
   const [pledgeAmount, setPledgeAmount] = useState<string>("")
 
   const pledgeInputHandler = (newValue: string) => {
@@ -39,13 +40,10 @@ const SelectionModalOptions: FC<SelectionModalOptionsProps> = ({
     onSubmit({ selectedOption, amount: parseInt(pledgeAmount) })
   }
 
-  // useEffect(
-  //   () => () => {
-  //     setPledgeAmount("")
-  //     setSelectedOption("")
-  //   },
-  //   []
-  // )
+  useEffect(() => {
+    console.log(selectedOption)
+    console.log(selected)
+  }, [selectedOption])
 
   return (
     <form>

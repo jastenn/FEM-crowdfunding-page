@@ -26,6 +26,10 @@
   }
 }
 
+.reward:global(.disabled) {
+  opacity: 0.5;
+}
+
 .reward {
   :global(.heading) {
     @include media-query.md {

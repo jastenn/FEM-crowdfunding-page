@@ -5,12 +5,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   size?: "sm" | "md" | "lg"
 }
 
-const Button: FC<ButtonProps> = ({
-  size = "md",
-  disabled,
-  children,
-  ...props
-}) => {
+const Button: FC<ButtonProps> = ({ size = "md", children, ...props }) => {
   return (
     <button className={`${styles.button} __button ${size}`} {...props}>
       {children}

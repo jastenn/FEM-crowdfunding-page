@@ -25,6 +25,7 @@
   position: relative;
   :global(.heading) {
     display: block;
+    cursor: pointer;
     @include media-query.xmd {
       display: flex;
       :global(.condition) {

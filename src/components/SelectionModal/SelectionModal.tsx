@@ -21,6 +21,7 @@ interface SelectionModalProps {
 }
 
 const SelectionModal: FC<SelectionModalProps> = ({
+  selected,
   onClose,
   options,
   campaignTitle,
@@ -45,7 +46,11 @@ const SelectionModal: FC<SelectionModalProps> = ({
         Want to support us in bringing {campaignTitle} out in the world?
       </p>
 
-      <SelectionModalOptions onSubmit={onSubmit} options={options} />
+      <SelectionModalOptions
+        selected={selected}
+        onSubmit={onSubmit}
+        options={options}
+      />
     </div>
   )
 }

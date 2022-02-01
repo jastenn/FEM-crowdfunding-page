@@ -36,6 +36,7 @@ const rewards: Reward[] = [
 ]
 
 function App() {
+  const [selectedOption, setSelectedOption] = useState<string>()
   const [isScrollDisable, setIsScrollDisable] = useState(false)
   const [isSelectionModalActive, setSelectionModalActive] = useState(false)
   const [isSuccessModalVisible, setIsSuccessModalVisible] = useState(false)
@@ -88,6 +89,7 @@ function App() {
           <div className="backdrop"></div>
           {isSelectionModalActive ? (
             <SelectionModal
+              selected={selectedOption}
               onSubmit={submitHandler}
               isActive={isSelectionModalActive}
               onClose={() => setSelectionModalActive(false)}
@@ -124,6 +126,12 @@ function App() {
             `Featuring artisan craftsmanship, the simplicity of design creates extra desk space below your computer 
             to allow notepads, pens, and USB sticks to be stored under the stand.`,
           ]}
+          onSelect={(option) => {
+            console.log(option)
+            setSelectedOption(option)
+            setSelectionModalActive(true)
+            window.scrollTo({ top: 0 })
+          }}
           rewards={rewards}
         />
       </main>
