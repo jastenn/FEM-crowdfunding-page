@@ -30,7 +30,7 @@ const Status: FC<StatusProps> = ({
         </div>
 
         <div>
-          <h4 className={styles.value}>${en.format(totalBackers)}</h4>
+          <h4 className={styles.value}>{en.format(totalBackers)}</h4>
           <p className={styles.label}>
             total {totalBackers > 1 ? "backers" : "backer"}
           </p>
